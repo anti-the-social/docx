@@ -26,8 +26,16 @@ export abstract class XmlComponent extends BaseXmlComponent {
         // avoid an unneeded XML close element.
         // Additionally, if the array is empty, use an empty object as our
         // children in order to get an empty XML element generated.
+        let rootValue = EMPTY_OBJECT;
+        if (children.length) {
+            rootValue = children;
+            if (children.length === 1 && children[0] && children[0]._attr) {
+                rootValue = children[0];
+            }
+        }
+
         return {
-            [this.rootKey]: children.length ? (children.length === 1 && children[0]?._attr ? children[0] : children) : EMPTY_OBJECT,
+            [this.rootKey]: rootValue,
         };
     }
 
