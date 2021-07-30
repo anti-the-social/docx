@@ -44,7 +44,7 @@ export class Table extends XmlComponent {
         float,
         layout,
         style,
-        borders,
+        borders = {},
         alignment,
         visuallyRightToLeft,
     }: ITableOptions) {
@@ -52,7 +52,7 @@ export class Table extends XmlComponent {
 
         this.root.push(
             new TableProperties({
-                borders: borders ?? {},
+                borders,
                 width: width ?? { size: 100 },
                 indent,
                 float,
